@@ -120,6 +120,7 @@ public class WorkoutController {
                 .data(routine_id).result_state(true).build();
     }
 
+    // 해당 루틴에 볼륨추가
     @RequestMapping(value = "/update/{routine}/volume",method = RequestMethod.PUT)
     public ResData addVolumeToRoutine(
             @RequestHeader(AUTH) String token,
@@ -157,7 +158,7 @@ public class WorkoutController {
                 .result_state(true).build();
     }
 
-
+    // 해당 루틴에 볼륨삭제
     @RequestMapping(value = "/delete/{routine}/volume",method = RequestMethod.DELETE)
     public ResData deleteVolumeToRoutine(
             @RequestHeader(AUTH) String token,
@@ -193,6 +194,7 @@ public class WorkoutController {
                 .result_state(true).build();
     }
 
+    // 해당 루틴 삭제
     @RequestMapping(value = "/delete/{routine}/routine",method = RequestMethod.DELETE)
     public ResData deleteRoutine(
             @RequestHeader(AUTH) String token,
