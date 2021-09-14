@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class WorkoutDTO {
 
@@ -13,15 +14,15 @@ public class WorkoutDTO {
     private String name;
     private String workout_img;
     private String part;
-    private String target;
-    private int e_type;
+    private Integer e_type;
+    private String explain;
 
     public WorkoutDTO(Workout workout) {
         this.id = workout.getId();
         this.name = workout.getName();
         this.workout_img = workout.getWorkout_img();
         this.part = workout.getPart();
-        this.target = workout.getTarget();
         this.e_type = workout.getE_type();
+        this.explain = workout.getExplanation();
     }
 }

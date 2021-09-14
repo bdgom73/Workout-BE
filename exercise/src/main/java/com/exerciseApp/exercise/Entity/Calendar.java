@@ -2,42 +2,54 @@ package com.exerciseApp.exercise.Entity;
 
 import com.exerciseApp.exercise.DTO.CalendarDTO.CalendarRegister;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter @Setter
-public class Calendar{
+@Getter
+@Setter
+@NoArgsConstructor
+public class Calendar extends BaseEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "calendar_id")
     private Long id;
 
-    @Column(name = "current_date")
-    private LocalDate currentDate;
+    @Column(name = "start_date")
+    private LocalDate startDate;
+    @Column(name = "end_date")
+    private LocalDate endDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    private boolean isWorkout;
+    private String title;
+
+    private String color;
 
     @Column(columnDefinition = "text")
     private String memo;
 
+
     // 생성자
-    public Calendar(String date ,Member member, boolean isWorkout){
-        this.currentDate = LocalDate.parse(date);
+    public Calendar(String start_date, String end_date, Member member) {
+        this.startDate = LocalDate.parse(start_date);
+        this.endDate = LocalDate.parse(end_date);
         this.member = member;
-        this.isWorkout = isWorkout;
     }
 
-    public Calendar(CalendarRegister calendarRegister,Member member) {
-        this.currentDate = LocalDate.parse(calendarRegister.getDate());
-        this.isWorkout = calendarRegister.isWorkout();
+    public Calendar(CalendarRegister calendarRegister, Member member) {
+        this.startDate = LocalDate.parse(calendarRegister.getStartDate());
+        this.endDate = LocalDate.parse(calendarRegister.getEndDate());
+        this.memo = calendarRegister.getMemo();
+        this.title = calendarRegister.getTitle();
         this.member = member;
+        this.color = calendarRegister.getColor();
     }
 
 

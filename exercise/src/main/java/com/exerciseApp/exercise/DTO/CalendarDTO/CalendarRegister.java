@@ -1,17 +1,15 @@
 package com.exerciseApp.exercise.DTO.CalendarDTO;
 
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-
-@Getter @Setter
+@Getter
+@Setter
 public class CalendarRegister {
 
-    private String date;
-    private boolean isWorkout;
+    private String startDate;
+    private String endDate;
     private String memo;
-
+    private String title;
+    private String color;
 }

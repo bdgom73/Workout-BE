@@ -4,13 +4,18 @@ spring:
     username: sa
     password:
     driver-class-name: org.h2.Driver
+    sql-script-encoding: UTF-8
   jpa:
     hibernate:
-      ddl-auto: create
-      properties:
-        hibernate:
-          # show_sql: true
-          format_sql: true
+      ddl-auto: update
+    properties:
+      hibernate:
+        # show_sql: true
+        format_sql: true
+  devtools:
+    livereload:
+      enabled: true
+
 logging.level:
   org.hibernate.SQL: debug
 # org.hibernate.type: trac

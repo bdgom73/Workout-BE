@@ -1,46 +1,51 @@
 package com.exerciseApp.exercise.Entity;
 
 import com.exerciseApp.exercise.DTO.WorkoutDTO.VolumeRegister;
-import lombok.*;
-import org.hibernate.jdbc.Work;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
-public class Volume {
+public class Volume extends BaseEntity {
 
     @Id
     @GeneratedValue
     @Column(name = "volume_id")
     private Long id;
 
-    private int num;
-    private int sets;
-    private int orders;
+    private Integer num;
+    private Integer sets;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "workout_id")
     private Workout workout;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="routine_id")
+    @JoinColumn(name = "routine_id")
     private Routine routine;
 
     public Volume(VolumeRegister vr) {
         this.num = vr.getNum();
         this.sets = vr.getSets();
-        this.orders = vr.getOrders();
     }
 
-    public Volume(int num, int sets, int orders, Workout workout, Routine routine) {
+    public Volume(int num, int sets, Workout workout, Routine routine) {
         this.num = num;
         this.sets = sets;
-        this.orders = orders;
         this.workout = workout;
         this.routine = routine;
+    }
+
+    public Volume(Volume volume, Routine routine) {
+        this.num = volume.getNum();
+        this.sets = volume.getSets();
+        this.workout = volume.getWorkout();
+        this.routine = routine;
+        routine.getVolumes().add(this);
     }
 }

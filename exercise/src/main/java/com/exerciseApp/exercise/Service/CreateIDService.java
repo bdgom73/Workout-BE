@@ -19,26 +19,29 @@ public class CreateIDService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public String issueKey(){
+    public String issueKey() {
         boolean isDup = Boolean.TRUE;
         String randomPID = createRandomPID();
-        while (isDup){
+        while (isDup) {
             Optional<Member> findSSID = memberRepository.findBySESSID(randomPID);
-            if(findSSID.isPresent()){randomPID = createRandomPID();}
-            else{isDup = Boolean.FALSE;}
+            if (findSSID.isPresent()) {
+                randomPID = createRandomPID();
+            } else {
+                isDup = Boolean.FALSE;
+            }
         }
         return randomPID;
     }
 
-    public boolean matchPassword(String input_password , String saved_password){
+    public boolean matchPassword(String input_password, String saved_password) {
         return passwordEncoder.matches(input_password, saved_password);
     }
 
-    public String encodePassword(String password){
+    public String encodePassword(String password) {
         return passwordEncoder.encode(password);
     }
 
-    public String CreateRandomString(int len){
+    public String CreateRandomString(int len) {
         Random random = new Random();
         return random.ints(48, 122 + 1)
                 .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
@@ -47,7 +50,7 @@ public class CreateIDService {
                 .toString();
     }
 
-    private String createRandomPID(){
+    private String createRandomPID() {
         StringBuilder sb = new StringBuilder();
         sb.append("Exc97");
         Random random = new Random();

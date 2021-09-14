@@ -1,6 +1,5 @@
 package com.exerciseApp.exercise.Entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
-public class Routine {
+public class Routine extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -22,10 +22,29 @@ public class Routine {
     private String title;
     private String part;
 
+    private Boolean share;
+
+    @Column(name = "original_author")
+    private Long originalAuthor;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "routine",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "routine", cascade = CascadeType.ALL)
     private List<Volume> volumes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "routine", cascade = CascadeType.ALL)
+    private List<Recommend> recommends = new ArrayList<>();
+
+    @Transient
+    private Integer score;
+
+    public Routine(Routine routine, Member member) {
+        this.title = routine.getTitle();
+        this.part = routine.getPart();
+        this.share = Boolean.FALSE;
+        this.originalAuthor = routine.member.getId();
+        this.member = member;
+    }
 }

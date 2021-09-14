@@ -1,19 +1,21 @@
 package com.exerciseApp.exercise.DTO.WorkoutDTO;
 
-import lombok.*;
-import org.springframework.web.multipart.MultipartFile;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Data
-@Builder @Getter @Setter
+@Getter
+@Setter
+@ToString
 public class WorkoutRegister {
 
     private String name;
 
-    private MultipartFile workout_imageFile;
-
     private String part;
+    private Integer e_type;
 
-    private String target;
+    private String explanation;
 
-    private int e_type;
 }
