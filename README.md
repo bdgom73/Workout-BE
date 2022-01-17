@@ -1,6 +1,6 @@
 # WORKOUT APP V1 
-[Workout Application V2 이동](https://github.com/bdgom73/exersiceV2)
-[Workout Application V1 Frontend 이동](https://github.com/bdgom73/exersiceV2)
+* [Workout Application V2 이동](https://github.com/bdgom73/exersiceV2) 
+* [Workout Application V1 Frontend 이동](https://github.com/bdgom73/exersiceV2)
 ## 1. 회원관리
 
 ### 1-1 로그인 
