@@ -1,5 +1,5 @@
 # WORKOUT APP V1 
-[Workout Application V2 ->](https://github.com/bdgom73/exersiceV2)
+[Workout Application V2 이동](https://github.com/bdgom73/exersiceV2)
 
 ## 1. 회원관리
 
